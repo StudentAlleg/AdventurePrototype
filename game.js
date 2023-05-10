@@ -4,7 +4,7 @@ class Level1 extends AdventureScene {
     }
 
     onEnter() {
-        let key1 = this.add.text(this.w * 0.33, this.w * 0.33, "🔑")
+        let key1 = this.add.text(this.playW * 0.33, this.h * 0.5, "🔑")
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => {
@@ -23,7 +23,7 @@ class Level1 extends AdventureScene {
             });
         
         
-        let key2 = this.add.text(this.w * 0.66, this.w * 0.66, "🔑")
+        let key2 = this.add.text(this.playW * 0.66, this.h * 0.5, "🔑")
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => {
@@ -41,6 +41,8 @@ class Level1 extends AdventureScene {
                 });;
             });
 
+
+        let circle1 = this.add.circle(this.playW * 0.33, this.h * 0.5, this.s * 10)
     }
 }
     

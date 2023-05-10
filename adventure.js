@@ -15,6 +15,7 @@ class AdventureScene extends Phaser.Scene {
         this.w = this.game.config.width;
         this.h = this.game.config.height;
         this.s = this.game.config.width * 0.01;
+        this.playW = this.w * 0.75;
 
         this.cameras.main.setBackgroundColor('#444');
         this.cameras.main.fadeIn(this.transitionDuration, 0, 0, 0);
@@ -142,6 +143,13 @@ class AdventureScene extends Phaser.Scene {
         this.time.delayedCall(this.transitionDuration, () => {
             this.scene.start(key, { inventory: this.inventory });
         });
+    }
+
+    randomColor() {
+        //This generates a random color
+        let randomNumber = n => Math.floor(Math.random() * (n + 1)); //Generate a number between 0 and n
+        new color = Color(randomNumber(255), randomNumber(255), randomNumber(255)); //A random color
+        return color;
     }
 
     onEnter() {
