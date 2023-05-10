@@ -1,3 +1,14 @@
+class Level1 extends AdventureScene {
+    constructor() {
+        super("level1", "Level 1");
+    }
+
+    onEnter() {
+
+    }
+}
+    
+
 class Demo1 extends AdventureScene {
     constructor() {
         super("demo1", "First Room");
@@ -97,11 +108,11 @@ class Intro extends Phaser.Scene {
         super('intro')
     }
     create() {
-        this.add.text(50,50, "Adventure awaits!").setFontSize(50);
+        this.add.text(50,50, "Are you capable of leaving?").setFontSize(50);
         this.add.text(50,100, "Click anywhere to begin.").setFontSize(20);
         this.input.on('pointerdown', () => {
             this.cameras.main.fade(1000, 0,0,0);
-            this.time.delayedCall(1000, () => this.scene.start('demo1'));
+            this.time.delayedCall(1000, () => this.scene.start('level1'));
         });
     }
 }
