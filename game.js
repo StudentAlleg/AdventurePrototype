@@ -4,6 +4,42 @@ class Level1 extends AdventureScene {
     }
 
     onEnter() {
+        let key1 = this.add.text(this.w * 0.33, this.w * 0.33, "🔑")
+            .setFontSize(this.s * 4)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("Key with the label 1.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the key.");
+                this.gainItem('key1');
+                this.tweens.add({
+                    targets: key1,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key1.destroy()
+                });;
+            });
+        
+        
+        let key2 = this.add.text(this.w * 0.66, this.w * 0.66, "🔑")
+            .setFontSize(this.s * 4)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("Key with the label 2.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the key.");
+                this.gainItem('key2');
+                this.tweens.add({
+                    targets: key2,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key2.destroy()
+                });;
+            });
 
     }
 }
@@ -136,7 +172,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Demo1, Demo2, Outro],
+    scene: [Intro, Level1, Demo2, Outro],
     title: "Adventure Game",
 });
 
