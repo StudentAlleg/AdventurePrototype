@@ -1,10 +1,36 @@
+class Loop {
+    //iterate through items one at a time
+    constructor() {
+        this.pos = 0
+        this.array = new Array();
+    }
+
+    push(item) {
+        this.array.push(item);
+    }
+
+    getItem() {
+        let item = this.array[this.pos]; //retrieve item to return
+        this.pos++; //set the next item to return
+        if (this.pos >= this.array.length) { //if there are no more items in the array, go back to the beginning
+            this.pos = 0;
+        }
+        return item;
+    }
+}
+
+
 class Level1 extends AdventureScene {
     constructor() {
         super("level1", "Level 1");
     }
 
     onEnter() {
-        let key1 = this.add.text(this.playW * 0.33, this.h * 0.5, "🔑")
+        let pos1 = [this.playW * 0.33, this.h * 0.5]
+        let pos2 = [this.playW * 0.66, this.h * 0.5]
+
+
+        let key1 = this.add.text(pos1[0], pos1[1], "🔑")
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => {
@@ -23,7 +49,7 @@ class Level1 extends AdventureScene {
             });
         
         
-        let key2 = this.add.text(this.playW * 0.66, this.h * 0.5, "🔑")
+        let key2 = this.add.text(pos2[0], pos2[1], "🔑")
             .setFontSize(this.s * 4)
             .setInteractive()
             .on('pointerover', () => {
@@ -41,8 +67,48 @@ class Level1 extends AdventureScene {
                 });;
             });
 
+        let circle1Target = new Loop();
+        circle1Target.push(pos2);
+        circle1Target.push(pos1);
 
-        let circle1 = this.add.circle(this.playW * 0.33, this.h * 0.5, this.s * 10)
+        let circle1 = this.add.circle(pos1[0], pos1[1], this.s * 10, 0xFF0000)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("This is a circle.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("That tickles.");
+                let target = circle1Target.getItem();
+                this.tweens.add({
+                    targets: circle1,
+                    x: target[0],
+                    y: target[1],
+                    duration: 500,
+                    //onComplete: () => key2.destroy()
+                });;
+            });
+
+        let circle2Target = new Loop();
+        circle2Target.push(pos1);
+        circle2Target.push(pos2);
+
+        let circle2 = this.add.circle(pos2[0], pos2[1], this.s * 10, 0x00FF00)
+        .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("This is a square.")
+            })
+            .on('pointerdown', () => {
+                this.showMessage("That feels weird.");
+                let target = circle2Target.getItem();
+                this.tweens.add({
+                    targets: circle2,
+                    x: target[0],
+                    y: target[1],
+                    duration: 500,
+                    //onComplete: () => key2.destroy()
+                });;
+            });
+
     }
 }
     

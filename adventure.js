@@ -147,8 +147,8 @@ class AdventureScene extends Phaser.Scene {
 
     randomColor() {
         //This generates a random color
-        let randomNumber = n => Math.floor(Math.random() * (n + 1)); //Generate a number between 0 and n
-        new color = Color(randomNumber(255), randomNumber(255), randomNumber(255)); //A random color
+        let randomNumber = (n) => Math.floor(Math.random() * (n + 1)); //Generate a number between 0 and n
+        let color = this.design.Color(randomNumber(255), randomNumber(255), randomNumber(255)); //A random color
         return color;
     }
 
