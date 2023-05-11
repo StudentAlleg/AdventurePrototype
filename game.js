@@ -109,8 +109,8 @@ class Level1 extends AdventureScene {
                 });;
             });
 
-        let door = this.add.text(this.playW * 0.5, this.w * 0.75, "🚪")
-        .setFontSize(this.s * 10)
+        let door = this.add.text(this.playW * 0.5, this.h * 0.75, "🚪", {align: "center"})
+        .setFontSize(this.s * 7)
         .setInteractive()
         .on('pointerover', () => {
             if (this.hasItem("key1") && this.hasItem("key2")) {
@@ -127,7 +127,8 @@ class Level1 extends AdventureScene {
                 //door.setText("🚪 unlocked door");
                 this.gotoScene('level2');
             }
-        })
+        });
+        door.setPosition(this.playW * 0.5 - door.width/2, this.h * 0.75 - door.height/2);
 
     }
 }
