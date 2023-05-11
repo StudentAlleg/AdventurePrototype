@@ -145,6 +145,26 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    newCircle(x, y, r, color, overMessage, downMessage, targetsLoop) {
+        let circle = this.add.circle(x, y, r, color)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage(overMessage)
+            })
+            .on('pointerdown', () => {
+                this.showMessage(downMessage);
+                let target = targetsLoop.getItem();
+                this.tweens.add({
+                    targets: circle,
+                    x: target[0],
+                    y: target[1],
+                    duration: 500,
+                    //onComplete: () => key2.destroy()
+                });
+            });
+        return circle;
+    }
+
     randomColor() {
         //This generates a random color
         let randomNumber = (n) => Math.floor(Math.random() * (n + 1)); //Generate a number between 0 and n
@@ -155,5 +175,28 @@ class AdventureScene extends Phaser.Scene {
 
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
+    }
+}
+
+
+
+class Loop {
+    //iterate through items one at a time
+    constructor(array) {
+        this.pos = 0
+        this.array = array;
+    }
+
+    push(item) {
+        this.array.push(item);
+    }
+
+    getItem() {
+        let item = this.array[this.pos]; //retrieve item to return
+        this.pos++; //set the next item to return
+        if (this.pos >= this.array.length) { //if there are no more items in the array, go back to the beginning
+            this.pos = 0;
+        }
+        return item;
     }
 }

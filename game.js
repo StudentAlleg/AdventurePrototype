@@ -1,4 +1,4 @@
-class Loop {
+/*class Loop {
     //iterate through items one at a time
     constructor() {
         this.pos = 0
@@ -17,7 +17,7 @@ class Loop {
         }
         return item;
     }
-}
+}*/
 
 
 class Level1 extends AdventureScene {
@@ -66,12 +66,11 @@ class Level1 extends AdventureScene {
                     onComplete: () => key2.destroy()
                 });;
             });
+        
+        let circle1Target = new Loop([pos2, pos1]);
 
-        let circle1Target = new Loop();
-        circle1Target.push(pos2);
-        circle1Target.push(pos1);
-
-        let circle1 = this.add.circle(pos1[0], pos1[1], this.s * 10, 0xFF0000)
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "This is a circle.", "That tickles.", circle1Target)
+        /*let circle1 = this.add.circle(pos1[0], pos1[1], this.s * 10, 0xFF0000)
             .setInteractive()
             .on('pointerover', () => {
                 this.showMessage("This is a circle.")
@@ -86,14 +85,12 @@ class Level1 extends AdventureScene {
                     duration: 500,
                     //onComplete: () => key2.destroy()
                 });;
-            });
+            });*/
 
-        let circle2Target = new Loop();
-        circle2Target.push(pos1);
-        circle2Target.push(pos2);
+        let circle2Target = new Loop([pos1, pos2]);
 
-        let circle2 = this.add.circle(pos2[0], pos2[1], this.s * 10, 0x00FF00)
-        .setInteractive()
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "This is a square.", "That feels weird.", circle2Target);
+        /*.setInteractive()
             .on('pointerover', () => {
                 this.showMessage("This is a square.")
             })
@@ -107,7 +104,7 @@ class Level1 extends AdventureScene {
                     duration: 500,
                     //onComplete: () => key2.destroy()
                 });;
-            });
+            });*/
 
         let door = this.add.text(this.playW * 0.5, this.h * 0.75, "🚪", {align: "center"})
         .setFontSize(this.s * 7)
@@ -129,7 +126,6 @@ class Level1 extends AdventureScene {
             }
         });
         door.setPosition(this.playW * 0.5 - door.width/2, this.h * 0.75 - door.height/2);
-
     }
 }
 
