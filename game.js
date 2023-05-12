@@ -29,43 +29,10 @@ class Level1 extends AdventureScene {
         let pos1 = [this.playW * 0.33, this.h * 0.5]
         let pos2 = [this.playW * 0.66, this.h * 0.5]
 
-
-        let key1 = this.add.text(pos1[0], pos1[1], "🔑")
-            .setFontSize(this.s * 4)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("Key with the label 1.")
-            })
-            .on('pointerdown', () => {
-                this.showMessage("You pick up the key.");
-                this.gainItem('key1');
-                this.tweens.add({
-                    targets: key1,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => key1.destroy()
-                });;
-            });
         
+        let key1 = this.newKey(pos1[0], pos1[1], "1");
         
-        let key2 = this.add.text(pos2[0], pos2[1], "🔑")
-            .setFontSize(this.s * 4)
-            .setInteractive()
-            .on('pointerover', () => {
-                this.showMessage("Key with the label 2.")
-            })
-            .on('pointerdown', () => {
-                this.showMessage("You pick up the key.");
-                this.gainItem('key2');
-                this.tweens.add({
-                    targets: key2,
-                    y: `-=${2 * this.s}`,
-                    alpha: { from: 1, to: 0 },
-                    duration: 500,
-                    onComplete: () => key2.destroy()
-                });;
-            });
+        let key2 = this.newKey(pos2[0], pos2[1], "2");
         
         let circle1Target = new Loop([pos2, pos1]);
 
@@ -125,7 +92,7 @@ class Level1 extends AdventureScene {
                 this.gotoScene('level2');
             }
         });
-        door.setPosition(this.playW * 0.5 - door.width/2, this.h * 0.75 - door.height/2);
+        this.centerTextObject(door);
     }
 }
 
@@ -135,6 +102,10 @@ class Level2 extends AdventureScene {
     }
 
     onEnter() {
+
+        let pos1 = [this.playW * 0.33, this.h * 0.33]
+        let pos2 = [this.playW * 0.66, this.h * 0.33]
+        let pos3 = [this.playW * 0.5, this.h * 0.66]
 
     }
 }

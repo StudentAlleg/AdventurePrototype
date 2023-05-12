@@ -145,7 +145,29 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
-    newCircle(x, y, r, color, overMessage, downMessage, targetsLoop) {
+    newKey(x, y, number) {
+        let key = this.add.text(x, y, "🔑")
+            .setFontSize(this.s * 4)
+            .setInteractive()
+            .on('pointerover', () => {
+                this.showMessage("Key with the label " + number + ".");
+            })
+            .on('pointerdown', () => {
+                this.showMessage("You pick up the key.");
+                this.gainItem('key' + number);
+                this.tweens.add({
+                    targets: key,
+                    y: `-=${2 * this.s}`,
+                    alpha: { from: 1, to: 0 },
+                    duration: 500,
+                    onComplete: () => key.destroy()
+                });;
+            });
+        this.centerTextObject(key);
+        return key;
+    }
+
+    newCircle(x, y, r, color, overMessage, downMessage, targetsLoop) { //generate a moving circle
         let circle = this.add.circle(x, y, r, color)
             .setInteractive()
             .on('pointerover', () => {
@@ -163,6 +185,10 @@ class AdventureScene extends Phaser.Scene {
                 });
             });
         return circle;
+    }
+
+    centerTextObject(obj) { //center text on its position
+        obj.setPosition(obj.x - obj.width/2, obj.y - obj.height/2);
     }
 
     randomColor() {
