@@ -207,21 +207,22 @@ class Level4 extends AdventureScene {
         let pos2 = [this.playW * 0.5, this.h * 0.75];
         let pos3 = [this.playW * 0.75, this.h * 0.5];
         let pos4 = [this.playW * 0.25, this.h * 0.5];
-
+        let bkgrdColor = 0x444444;
+        
         let key1 = this.newKey(pos1[0], pos1[1], "1");
         let key2 = this.newKey(pos3[0], pos3[1], "2");
 
-        let circle1Target = Loop(pos2, pos3, pos4, pos1);
+        let circle3Target = new Loop([pos4, pos1, pos2, pos3]);
+        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, bkgrdColor, " ", " ", circle3Target);
+
+        let circle4Target = new Loop([pos1, pos2, pos3, pos4]);
+        let circle4 = this.newCircle(pos4[0], pos4[1], this.s * 10, bkgrdColor, " ", " ", circle4Target);
+
+        let circle1Target = new Loop([pos2, pos3, pos4, pos1]);
         let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
 
-        let circle2Target = Loop(pos3, pos4, pos1, pos2);
+        let circle2Target = new Loop([pos3, pos4, pos1, pos2]);
         let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "I'm round.", "Watch where you poke that thing.", circle2Target);
-
-        let circle3Target = Loop(pos4, pos1, pos2, pos3);
-        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x000000, "", "", circle3Target);
-
-        let circle4Target = Loop(pos1, pos2, pos3, pos4);
-        let circle4 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x000000, "", "", circle4Target);
 
         let door = this.add.text(this.playW * 0.5, this.h * 0.5, "🚪", {align: "center"})
             .setFontSize(this.s * 7)
@@ -279,7 +280,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Level1, Level2, Level3, Outro],
+    scene: [Intro, Level1, Level2, Level3, Level4, Outro],
     title: "Escape the Void.",
 });
 
