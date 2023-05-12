@@ -74,24 +74,24 @@ class Level1 extends AdventureScene {
             });*/
 
         let door = this.add.text(this.playW * 0.5, this.h * 0.75, "🚪", {align: "center"})
-        .setFontSize(this.s * 7)
-        .setInteractive()
-        .on('pointerover', () => {
-            if (this.hasItem("key1") && this.hasItem("key2")) {
-                this.showMessage("You've got all the keys for this door.");
-            } else {
-                this.showMessage("It's locked. Can you find all keys?");
-            }
-        })
-        .on('pointerdown', () => {
-            if (this.hasItem("key1") && this.hasItem("key2")) {
-                this.loseItem("key1");
-                this.loseItem("key2");
-                this.showMessage("The door opens and you walk through.");
-                //door.setText("🚪 unlocked door");
-                this.gotoScene('level2');
-            }
-        });
+            .setFontSize(this.s * 7)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("key1") && this.hasItem("key2")) {
+                    this.showMessage("You've got all the keys for this door.");
+                } else {
+                    this.showMessage("It's locked. Can you find all keys?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("key1") && this.hasItem("key2")) {
+                    this.loseItem("key1");
+                    this.loseItem("key2");
+                    this.showMessage("The door opens and you walk through.");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('level2');
+                }
+            });
         this.centerTextObject(door);
     }
 }
@@ -121,25 +121,25 @@ class Level2 extends AdventureScene {
         let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
     
         let door = this.add.text(this.playW * 0.75, this.h * 0.75, "🚪", {align: "center"})
-        .setFontSize(this.s * 7)
-        .setInteractive()
-        .on('pointerover', () => {
-            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
-                this.showMessage("You've got all the keys for this door.");
-            } else {
-                this.showMessage("It's locked. Can you find all keys?");
-            }
-        })
-        .on('pointerdown', () => {
-            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
-                this.loseItem("key1");
-                this.loseItem("key2");
-                this.loseItem("key3");
-                this.showMessage("The door opens and you walk through.");
-                //door.setText("🚪 unlocked door");
-                this.gotoScene('level3');
-            }
-        });
+            .setFontSize(this.s * 7)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+                    this.showMessage("You've got all the keys for this door.");
+                } else {
+                    this.showMessage("It's locked. Can you find all keys?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+                    this.loseItem("key1");
+                    this.loseItem("key2");
+                    this.loseItem("key3");
+                    this.showMessage("The door opens and you walk through.");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('level3');
+                }
+            });
         this.centerTextObject(door);
     }
 }
@@ -169,30 +169,30 @@ class Level3 extends AdventureScene {
         let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
     
         let door = this.add.text(this.playW * 0.25, this.h * 0.75, "🚪", {align: "center"})
-        .setFontSize(this.s * 7)
-        .setInteractive()
-        .on('pointerover', () => {
-            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
-                this.showMessage("You've got all the keys for this door.");
-            } else {
-                this.showMessage("It's locked. Can you find all keys?");
-            }
-        })
-        .on('pointerdown', () => {
-            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
-                this.loseItem("key1");
-                this.loseItem("key2");
-                this.loseItem("key3");
-                this.loseItem("key4");
-                this.showMessage("The door opens and you walk through.");
-                //door.setText("🚪 unlocked door");
-                this.gotoScene('level4');
-            }
-            else if (!this.hasItem("key4")) {
-                this.showMessage("On closer examination, there seems to already be a key in here!");
-                this.gainItem("key4");
-            }
-        });
+            .setFontSize(this.s * 7)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
+                    this.showMessage("You've got all the keys for this door.");
+                } else {
+                    this.showMessage("It's locked. Can you find all keys?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
+                    this.loseItem("key1");
+                    this.loseItem("key2");
+                    this.loseItem("key3");
+                    this.loseItem("key4");
+                    this.showMessage("The door opens and you walk through.");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('level4');
+                }
+                else if (!this.hasItem("key4")) {
+                    this.showMessage("On closer examination, there seems to already be a key in here!");
+                    this.gainItem("key4");
+                }
+            });
         this.centerTextObject(door);
     }
 }
@@ -203,7 +203,46 @@ class Level4 extends AdventureScene {
     }
 
     onEnter() {
+        let pos1 = [this.playW * 0.5, this.h * 0.25];
+        let pos2 = [this.playW * 0.5, this.h * 0.75];
+        let pos3 = [this.playW * 0.75, this.h * 0.5];
+        let pos4 = [this.playW * 0.25, this.h * 0.5];
 
+        let key1 = this.newKey(pos1[0], pos1[1], "1");
+        let key2 = this.newKey(pos3[0], pos3[1], "2");
+
+        let circle1Target = Loop(pos2, pos3, pos4, pos1);
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
+
+        let circle2Target = Loop(pos3, pos4, pos1, pos2);
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "I'm round.", "Watch where you poke that thing.", circle2Target);
+
+        let circle3Target = Loop(pos4, pos1, pos2, pos3);
+        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x000000, "", "", circle3Target);
+
+        let circle4Target = Loop(pos1, pos2, pos3, pos4);
+        let circle4 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x000000, "", "", circle4Target);
+
+        let door = this.add.text(this.playW * 0.5, this.h * 0.5, "🚪", {align: "center"})
+            .setFontSize(this.s * 7)
+            .setInteractive()
+            .on('pointerover', () => {
+                if (this.hasItem("key1") && this.hasItem("key2")) {
+                    this.showMessage("You've got all the keys for this door.");
+                } else {
+                    this.showMessage("It's locked. Can you find all keys?");
+                }
+            })
+            .on('pointerdown', () => {
+                if (this.hasItem("key1") && this.hasItem("key2")) {
+                    this.loseItem("key1");
+                    this.loseItem("key2");
+                    this.showMessage("The door opens and you walk through.");
+                    //door.setText("🚪 unlocked door");
+                    this.gotoScene('outro');
+                }
+            });
+        this.centerTextObject(door);
     }
 }
 
