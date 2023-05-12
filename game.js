@@ -168,11 +168,11 @@ class Level3 extends AdventureScene {
         let circle3Target = new Loop([pos3, pos3, pos2, pos1, pos2, pos3, pos1, pos1, pos3]);
         let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
     
-        let door = this.add.text(this.playW * 0.5, this.h * 0.75, "🚪", {align: "center"})
+        let door = this.add.text(this.playW * 0.25, this.h * 0.75, "🚪", {align: "center"})
         .setFontSize(this.s * 7)
         .setInteractive()
         .on('pointerover', () => {
-            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
                 this.showMessage("You've got all the keys for this door.");
             } else {
                 this.showMessage("It's locked. Can you find all keys?");
@@ -188,7 +188,7 @@ class Level3 extends AdventureScene {
                 //door.setText("🚪 unlocked door");
                 this.gotoScene('level4');
             }
-            else {
+            else if (!this.hasItem("key4")) {
                 this.showMessage("On closer examination, there seems to already be a key in here!");
                 this.gainItem("key4");
             }
@@ -196,7 +196,16 @@ class Level3 extends AdventureScene {
         this.centerTextObject(door);
     }
 }
-    
+
+class Level4 extends AdventureScene {
+    constructor() {
+        super("level4", "Level 4");
+    }
+
+    onEnter() {
+
+    }
+}
 
 class Intro extends Phaser.Scene {
     constructor() {
