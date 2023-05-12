@@ -160,13 +160,13 @@ class Level3 extends AdventureScene {
         let key3 = this.newKey(pos3[0], pos3[1], "3");
 
         let circle1Target = new Loop([pos3, pos2, pos1, pos1]);
-        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I move.", "weeeeee", circle1Target);
 
         let circle2Target = new Loop([pos1, pos3, pos3, pos2, pos3]);
-        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "Woah watch it!", "Rude.", circle2Target);
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "I also move.", "Did you know that you have at least one bone in your body?", circle2Target);
 
         let circle3Target = new Loop([pos3, pos3, pos2, pos1, pos2, pos3, pos1, pos1, pos3]);
-        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
+        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "I probably move.", "I might not.", circle3Target);
     
         let door = this.add.text(this.playW * 0.25, this.h * 0.75, "🚪", {align: "center"})
             .setFontSize(this.s * 7)
@@ -219,10 +219,10 @@ class Level4 extends AdventureScene {
         let circle4 = this.newCircle(pos4[0], pos4[1], this.s * 10, bkgrdColor, " ", " ", circle4Target);
 
         let circle1Target = new Loop([pos2, pos3, pos4, pos1]);
-        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm Blue.", "Da ba dee da ba di", circle1Target);
 
         let circle2Target = new Loop([pos3, pos4, pos1, pos2]);
-        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "I'm round.", "Watch where you poke that thing.", circle2Target);
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "Don't touch me.", "I have nothing for you.", circle2Target);
 
         let door = this.add.text(this.playW * 0.5, this.h * 0.5, "🚪", {align: "center"})
             .setFontSize(this.s * 7)

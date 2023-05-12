@@ -191,14 +191,6 @@ class AdventureScene extends Phaser.Scene {
         obj.setPosition(obj.x - obj.width/2, obj.y - obj.height/2);
     }
 
-    randomColor() {
-        //This generates a random color
-        let randomNumber = (n) => Math.floor(Math.random() * (n + 1)); //Generate a number between 0 and n
-        let r255 = randomNumber(255);
-        let color = this.design.Color(r255, r255, r255); //A random color
-        return color;
-    }
-
     onEnter() {
         console.warn('This AdventureScene did not implement onEnter():', this.constructor.name);
     }
