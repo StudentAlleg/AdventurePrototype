@@ -36,7 +36,7 @@ class Level1 extends AdventureScene {
         
         let circle1Target = new Loop([pos2, pos1]);
 
-        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "This is a circle.", "That tickles.", circle1Target)
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "This is a circle.", "That tickles.", circle1Target);
         /*let circle1 = this.add.circle(pos1[0], pos1[1], this.s * 10, 0xFF0000)
             .setInteractive()
             .on('pointerover', () => {
@@ -107,6 +107,93 @@ class Level2 extends AdventureScene {
         let pos2 = [this.playW * 0.66, this.h * 0.33]
         let pos3 = [this.playW * 0.5, this.h * 0.66]
 
+        let key1 = this.newKey(pos1[0], pos1[1], "1");
+        let key2 = this.newKey(pos2[0], pos2[1], "2");
+        let key3 = this.newKey(pos3[0], pos3[1], "3");
+
+        let circle1Target = new Loop([pos3, pos2, pos1]);
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
+
+        let circle2Target = new Loop([pos1, pos3, pos2]);
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "Woah watch it!", "Rude.", circle2Target);
+
+        let circle3Target = new Loop([pos2, pos1, pos3]);
+        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
+    
+        let door = this.add.text(this.playW * 0.75, this.h * 0.75, "🚪", {align: "center"})
+        .setFontSize(this.s * 7)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+                this.showMessage("You've got all the keys for this door.");
+            } else {
+                this.showMessage("It's locked. Can you find all keys?");
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+                this.loseItem("key1");
+                this.loseItem("key2");
+                this.loseItem("key3");
+                this.showMessage("The door opens and you walk through.");
+                //door.setText("🚪 unlocked door");
+                this.gotoScene('level3');
+            }
+        });
+        this.centerTextObject(door);
+    }
+}
+
+class Level3 extends AdventureScene {
+    constructor() {
+        super("level3", "Level 3");
+    }
+
+    onEnter() {
+
+        let pos1 = [this.playW * 0.33, this.h * 0.33]
+        let pos2 = [this.playW * 0.66, this.h * 0.33]
+        let pos3 = [this.playW * 0.5, this.h * 0.66]
+
+        let key1 = this.newKey(pos1[0], pos1[1], "1");
+        let key2 = this.newKey(pos2[0], pos2[1], "2");
+        let key3 = this.newKey(pos3[0], pos3[1], "3");
+
+        let circle1Target = new Loop([pos3, pos2, pos1, pos1]);
+        let circle1 = this.newCircle(pos1[0], pos1[1], this.s * 10, 0xFF0000, "I'm round.", "Watch where you poke that thing.", circle1Target);
+
+        let circle2Target = new Loop([pos1, pos3, pos3, pos2, pos3]);
+        let circle2 = this.newCircle(pos2[0], pos2[1], this.s * 10, 0x00FF00, "Woah watch it!", "Rude.", circle2Target);
+
+        let circle3Target = new Loop([pos3, pos3, pos2, pos1, pos2, pos3, pos1, pos1, pos3]);
+        let circle3 = this.newCircle(pos3[0], pos3[1], this.s * 10, 0x0000FF, "Round.", "Round and Around and Around we go.", circle3Target);
+    
+        let door = this.add.text(this.playW * 0.5, this.h * 0.75, "🚪", {align: "center"})
+        .setFontSize(this.s * 7)
+        .setInteractive()
+        .on('pointerover', () => {
+            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3")) {
+                this.showMessage("You've got all the keys for this door.");
+            } else {
+                this.showMessage("It's locked. Can you find all keys?");
+            }
+        })
+        .on('pointerdown', () => {
+            if (this.hasItem("key1") && this.hasItem("key2") && this.hasItem("key3") && this.hasItem("key4")) {
+                this.loseItem("key1");
+                this.loseItem("key2");
+                this.loseItem("key3");
+                this.loseItem("key4");
+                this.showMessage("The door opens and you walk through.");
+                //door.setText("🚪 unlocked door");
+                this.gotoScene('level4');
+            }
+            else {
+                this.showMessage("On closer examination, there seems to already be a key in here!");
+                this.gainItem("key4");
+            }
+        });
+        this.centerTextObject(door);
     }
 }
     
@@ -144,7 +231,7 @@ const game = new Phaser.Game({
         width: 1920,
         height: 1080
     },
-    scene: [Intro, Level1, Level2, Outro],
+    scene: [Intro, Level1, Level2, Level3, Outro],
     title: "Escape the Void.",
 });
 
